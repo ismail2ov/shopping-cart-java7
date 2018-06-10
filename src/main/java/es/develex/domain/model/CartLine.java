@@ -2,15 +2,20 @@ package es.develex.domain.model;
 
 import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-@RedisHash("cartLine")
-public class CartLine {
+@RedisHash("CartLine")
+public class CartLine implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String productId;
     private String size;
     private String color;
     private BigDecimal price;
     private Integer numItems;
+
+    public CartLine() {
+    }
 
     public CartLine(String productId, String size, String color, BigDecimal price, Integer numItems) {
         this.productId = productId;

@@ -1,8 +1,10 @@
 package es.develex.domain.repository;
 
 import es.develex.domain.model.ShoppingCart;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.redis.core.RedisTemplate;
 
-@Repository
-public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, String> {}
+public interface ShoppingCartRepository {
+    ShoppingCart findById(String id);
+
+    void save(ShoppingCart shoppingCart);
+}

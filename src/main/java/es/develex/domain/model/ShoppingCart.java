@@ -5,14 +5,17 @@ import org.springframework.data.redis.core.RedisHash;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
-@RedisHash("cart")
+@RedisHash("ShoppingCart")
 public class ShoppingCart implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private List<CartLine> cartLines;
     private Integer numItems;
     private BigDecimal totalPrice;
+
+    public ShoppingCart() {
+    }
 
     public ShoppingCart(String id, Integer numItems, BigDecimal totalPrice) {
         this.id = id;
