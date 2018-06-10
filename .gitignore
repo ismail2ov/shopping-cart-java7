@@ -1,0 +1,25 @@
+# User-specific stuff
+.DS_Store
+.idea
+
+# CMake
+cmake-build-debug/
+cmake-build-release/
+
+
+
+# File-based project format
+*.iws
+
+# IntelliJ
+out/
+
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
