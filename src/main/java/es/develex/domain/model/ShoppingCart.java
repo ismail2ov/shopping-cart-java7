@@ -4,13 +4,14 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RedisHash("ShoppingCart")
 public class ShoppingCart implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
-    private List<CartLine> cartLines;
+    private List<CartLine> cartLines = new ArrayList<>();
     private Integer numItems = 0;
     private BigDecimal totalPrice = BigDecimal.ZERO;
 

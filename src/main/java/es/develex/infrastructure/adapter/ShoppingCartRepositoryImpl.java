@@ -18,13 +18,13 @@ public class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
 
     @Override
     public ShoppingCart findById(String id) {
-        ValueOperations<String, Object> values = redisTemplate.opsForValue();
+        ValueOperations<String, Object> values = this.redisTemplate.opsForValue();
         return (ShoppingCart) values.get(getRedisKey(id));
     }
 
     @Override
     public void save(ShoppingCart shoppingCart) {
-        ValueOperations<String, Object> values = redisTemplate.opsForValue();
+        ValueOperations<String, Object> values = this.redisTemplate.opsForValue();
         values.set(getRedisKey(shoppingCart.getId()), shoppingCart);
     }
 

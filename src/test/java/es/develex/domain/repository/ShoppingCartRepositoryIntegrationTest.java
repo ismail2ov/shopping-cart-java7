@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RedisConfiguration.class, ShoppingCartRepositoryImpl.class })
 public class ShoppingCartRepositoryIntegrationTest {
@@ -29,6 +31,16 @@ public class ShoppingCartRepositoryIntegrationTest {
         ShoppingCart retrievedShoppingCart = this.shoppingCartRepository.findById(shoppingCart.getId());
 
         assertRetrievedData(shoppingCart, retrievedShoppingCart);
+    }
+
+    @Test
+    public void when_create_empty_cart_then_num_items_is_zero() {
+        ShoppingCart shoppingCart = new ShoppingCart("001");
+        this.shoppingCartRepository.save(shoppingCart);
+
+        ShoppingCart retrievedShoppingCart = this.shoppingCartRepository.findById(shoppingCart.getId());
+
+        assertThat(retrievedShoppingCart.getNumItems()).isEqualTo(0);
     }
 
     private ShoppingCart getShoppingCart() {
