@@ -42,7 +42,7 @@ public class ShoppingCart implements Serializable {
 
         for (CartLine line : cartLines) {
             this.numItems += line.getNumItems();
-            this.totalPrice = this.totalPrice.add(line.getPrice().multiply(new BigDecimal(line.getNumItems())));
+            this.totalPrice = this.totalPrice.add(line.getArticle().getPrice().multiply(new BigDecimal(line.getNumItems())));
         }
     }
 
@@ -68,16 +68,15 @@ public class ShoppingCart implements Serializable {
     }
 
     public void addArticle(Article article) {
-        CartLine cartLine = new CartLine(article.getProductId(), article.getSize(), article.getColor(), article.getPrice(), 1);
-        int index = this.cartLines.indexOf(cartLine);
+        int index = this.cartLines.indexOf(article);
         if (index > -1) {
             this.cartLines.get(index).increaseNumItems();
         } else {
-            this.cartLines.add(cartLine);
+            this.cartLines.add(new CartLine(article, 1));
         }
 
         this.numItems++;
-        this.totalPrice = this.totalPrice.add(cartLine.getPrice());
+        this.totalPrice = this.totalPrice.add(article.getPrice());
 
     }
 }

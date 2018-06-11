@@ -60,8 +60,8 @@ public class ShoppingCartRepositoryIntegrationTest {
         ShoppingCart shoppingCart = new ShoppingCart("001");
 
         List<CartLine> cartLines = new ArrayList<>();
-        cartLines.add(new CartLine("001", "002", "003", new BigDecimal(12.36), 2));
-        cartLines.add(new CartLine("102", "203", "304", new BigDecimal(6.23), 3));
+        cartLines.add(new CartLine(new Article("001", "002", "003", new BigDecimal(12.36)), 2));
+        cartLines.add(new CartLine(new Article("102", "203", "304", new BigDecimal(6.23)), 3));
         shoppingCart.setCartLines(cartLines);
 
         return shoppingCart;

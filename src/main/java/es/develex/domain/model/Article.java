@@ -20,7 +20,7 @@ public class Article implements Serializable {
         this.productId = productId;
         this.size = size;
         this.color = color;
-        this.price = price;
+        this.price = price.setScale(2, BigDecimal.ROUND_UP);
     }
 
     public String getProductId() {
@@ -48,11 +48,11 @@ public class Article implements Serializable {
     }
 
     public BigDecimal getPrice() {
-        return this.price.setScale(2, BigDecimal.ROUND_UP);
+        return this.price;
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        this.price = price.setScale(2, BigDecimal.ROUND_UP);
     }
 
     @Override
