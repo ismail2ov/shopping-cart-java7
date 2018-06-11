@@ -42,10 +42,17 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -67,7 +74,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.version>4.3.5.RELEASE</spring.version>
+        <spring.version>3.2.16.RELEASE</spring.version>
         <spring-data-redis>1.7.0.RELEASE</spring-data-redis>
         <jedis.version>2.9.0</jedis.version>
         <jackson-databind.version>2.5.4</jackson-databind.version>
