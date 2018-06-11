@@ -26,7 +26,7 @@ public class CartLine implements Serializable {
     }
 
     public String getProductId() {
-        return productId;
+        return this.productId;
     }
 
     public void setProductId(String productId) {
@@ -34,7 +34,7 @@ public class CartLine implements Serializable {
     }
 
     public String getSize() {
-        return size;
+        return this.size;
     }
 
     public void setSize(String size) {
@@ -42,7 +42,7 @@ public class CartLine implements Serializable {
     }
 
     public String getColor() {
-        return color;
+        return this.color;
     }
 
     public void setColor(String color) {
@@ -50,7 +50,7 @@ public class CartLine implements Serializable {
     }
 
     public BigDecimal getPrice() {
-        return price;
+        return this.price.setScale(2, BigDecimal.ROUND_UP);
     }
 
     public void setPrice(BigDecimal price) {
@@ -58,7 +58,7 @@ public class CartLine implements Serializable {
     }
 
     public Integer getNumItems() {
-        return numItems;
+        return this.numItems;
     }
 
     public void setNumItems(Integer numItems) {
@@ -67,6 +67,6 @@ public class CartLine implements Serializable {
 
     @Override
     public String toString() {
-        return "CartLine{" + "productId='" + productId + '\'' + ", size='" + size + '\'' + ", color='" + color + '\'' + ", price=" + price + ", numItems=" + numItems + '}';
+        return "CartLine{" + "productId='" + this.productId + '\'' + ", size='" + this.size + '\'' + ", color='" + this.color + '\'' + ", price=" + this.price + ", numItems=" + this.numItems + '}';
     }
 }

@@ -11,20 +11,18 @@ public class ShoppingCart implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
     private List<CartLine> cartLines;
-    private Integer numItems;
-    private BigDecimal totalPrice;
+    private Integer numItems = 0;
+    private BigDecimal totalPrice = BigDecimal.ZERO;
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(String id, Integer numItems, BigDecimal totalPrice) {
+    public ShoppingCart(String id) {
         this.id = id;
-        this.numItems = numItems;
-        this.totalPrice = totalPrice;
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -32,15 +30,23 @@ public class ShoppingCart implements Serializable {
     }
 
     public List<CartLine> getCartLines() {
-        return cartLines;
+        return this.cartLines;
     }
 
     public void setCartLines(List<CartLine> cartLines) {
         this.cartLines = cartLines;
+
+        this.numItems = 0;
+        this.totalPrice = BigDecimal.ZERO;
+
+        for (CartLine line : cartLines) {
+            this.numItems += line.getNumItems();
+            this.totalPrice = this.totalPrice.add(line.getPrice().multiply(new BigDecimal(line.getNumItems())));
+        }
     }
 
     public Integer getNumItems() {
-        return numItems;
+        return this.numItems;
     }
 
     public void setNumItems(Integer numItems) {
@@ -48,7 +54,7 @@ public class ShoppingCart implements Serializable {
     }
 
     public BigDecimal getTotalPrice() {
-        return totalPrice;
+        return this.totalPrice.setScale(2, BigDecimal.ROUND_UP);
     }
 
     public void setTotalPrice(BigDecimal totalPrice) {
@@ -57,6 +63,6 @@ public class ShoppingCart implements Serializable {
 
     @Override
     public String toString() {
-        return "ShoppingCart{" + "id='" + id + '\'' + ", numItems=" + numItems + ", totalPrice=" + totalPrice + '}';
+        return "ShoppingCart{" + "id='" + this.id + '\'' + ", numItems=" + this.numItems + ", totalPrice=" + this.totalPrice + '}';
     }
 }
