@@ -4,6 +4,7 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @RedisHash("CartLine")
 public class CartLine implements Serializable {
@@ -66,7 +67,27 @@ public class CartLine implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        CartLine cartLine = (CartLine) o;
+        return Objects.equals(this.productId, cartLine.productId) && Objects.equals(this.size, cartLine.size) && Objects.equals(this.color, cartLine.color);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(this.productId, this.size, this.color);
+    }
+
+    @Override
     public String toString() {
         return "CartLine{" + "productId='" + this.productId + '\'' + ", size='" + this.size + '\'' + ", color='" + this.color + '\'' + ", price=" + this.price + ", numItems=" + this.numItems + '}';
+    }
+
+    public void increaseNumItems() {
+        this.numItems++;
     }
 }

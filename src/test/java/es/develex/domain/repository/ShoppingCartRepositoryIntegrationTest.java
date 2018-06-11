@@ -1,5 +1,6 @@
 package es.develex.domain.repository;
 
+import es.develex.domain.model.Article;
 import es.develex.domain.model.CartLine;
 import es.develex.domain.model.ShoppingCart;
 import es.develex.infrastructure.adapter.ShoppingCartRepositoryImpl;
@@ -41,6 +42,18 @@ public class ShoppingCartRepositoryIntegrationTest {
         ShoppingCart retrievedShoppingCart = this.shoppingCartRepository.findById(shoppingCart.getId());
 
         assertThat(retrievedShoppingCart.getNumItems()).isEqualTo(0);
+    }
+
+    @Test
+    public void when_add_article_then_num_items_increase() {
+        ShoppingCart shoppingCart = new ShoppingCart("001");
+        Article article = new Article("123456", "78", "90", new BigDecimal(12.68));
+        shoppingCart.addArticle(article);
+        this.shoppingCartRepository.save(shoppingCart);
+
+        ShoppingCart retrievedShoppingCart = this.shoppingCartRepository.findById(shoppingCart.getId());
+
+        assertThat(retrievedShoppingCart.getNumItems()).isEqualTo(1);
     }
 
     private ShoppingCart getShoppingCart() {

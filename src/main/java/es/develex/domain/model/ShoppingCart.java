@@ -66,4 +66,18 @@ public class ShoppingCart implements Serializable {
     public String toString() {
         return "ShoppingCart{" + "id='" + this.id + '\'' + ", numItems=" + this.numItems + ", totalPrice=" + this.totalPrice + '}';
     }
+
+    public void addArticle(Article article) {
+        CartLine cartLine = new CartLine(article.getProductId(), article.getSize(), article.getColor(), article.getPrice(), 1);
+        int index = this.cartLines.indexOf(cartLine);
+        if (index > -1) {
+            this.cartLines.get(index).increaseNumItems();
+        } else {
+            this.cartLines.add(cartLine);
+        }
+
+        this.numItems++;
+        this.totalPrice = this.totalPrice.add(cartLine.getPrice());
+
+    }
 }
