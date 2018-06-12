@@ -13,7 +13,7 @@ public class Article implements Serializable {
     private String color;
     private BigDecimal price;
 
-    public Article() {
+    private Article() {
     }
 
     public Article(String productId, String size, String color, BigDecimal price) {
@@ -27,7 +27,7 @@ public class Article implements Serializable {
         return this.productId;
     }
 
-    public void setProductId(String productId) {
+    private void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -35,7 +35,7 @@ public class Article implements Serializable {
         return this.size;
     }
 
-    public void setSize(String size) {
+    private void setSize(String size) {
         this.size = size;
     }
 
@@ -43,7 +43,7 @@ public class Article implements Serializable {
         return this.color;
     }
 
-    public void setColor(String color) {
+    private void setColor(String color) {
         this.color = color;
     }
 
@@ -51,7 +51,7 @@ public class Article implements Serializable {
         return this.price;
     }
 
-    public void setPrice(BigDecimal price) {
+    private void setPrice(BigDecimal price) {
         this.price = price.setScale(2, BigDecimal.ROUND_UP);
     }
 

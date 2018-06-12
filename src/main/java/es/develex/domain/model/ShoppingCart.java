@@ -15,7 +15,7 @@ public class ShoppingCart implements Serializable {
     private Integer numItems = 0;
     private BigDecimal totalPrice = BigDecimal.ZERO;
 
-    public ShoppingCart() {
+    private ShoppingCart() {
     }
 
     public ShoppingCart(String id) {
@@ -26,7 +26,7 @@ public class ShoppingCart implements Serializable {
         return this.id;
     }
 
-    public void setId(String id) {
+    private void setId(String id) {
         this.id = id;
     }
 
@@ -34,23 +34,15 @@ public class ShoppingCart implements Serializable {
         return this.cartLines;
     }
 
-    public void setCartLines(List<CartLine> cartLines) {
+    private void setCartLines(List<CartLine> cartLines) {
         this.cartLines = cartLines;
-
-        this.numItems = 0;
-        this.totalPrice = BigDecimal.ZERO;
-
-        for (CartLine line : cartLines) {
-            this.numItems += line.getNumItems();
-            this.totalPrice = this.totalPrice.add(line.getArticle().getPrice().multiply(new BigDecimal(line.getNumItems())));
-        }
     }
 
     public Integer getNumItems() {
         return this.numItems;
     }
 
-    public void setNumItems(Integer numItems) {
+    private void setNumItems(Integer numItems) {
         this.numItems = numItems;
     }
 
@@ -58,7 +50,7 @@ public class ShoppingCart implements Serializable {
         return this.totalPrice.setScale(2, BigDecimal.ROUND_UP);
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
+    private void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 

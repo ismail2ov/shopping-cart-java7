@@ -12,7 +12,7 @@ public class CartLine implements Serializable {
     private Article article;
     private Integer numItems;
 
-    public CartLine() {
+    private CartLine() {
     }
 
     public CartLine(Article article, Integer numItems) {
@@ -24,7 +24,7 @@ public class CartLine implements Serializable {
         return this.article;
     }
 
-    public void setArticle(Article article) {
+    private void setArticle(Article article) {
         this.article = article;
     }
 
@@ -32,7 +32,7 @@ public class CartLine implements Serializable {
         return this.numItems;
     }
 
-    public void setNumItems(Integer numItems) {
+    private void setNumItems(Integer numItems) {
         this.numItems = numItems;
     }
 

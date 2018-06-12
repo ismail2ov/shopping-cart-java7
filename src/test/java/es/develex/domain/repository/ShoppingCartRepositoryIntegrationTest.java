@@ -58,11 +58,11 @@ public class ShoppingCartRepositoryIntegrationTest {
 
     private ShoppingCart getShoppingCart() {
         ShoppingCart shoppingCart = new ShoppingCart("001");
-
-        List<CartLine> cartLines = new ArrayList<>();
-        cartLines.add(new CartLine(new Article("001", "002", "003", new BigDecimal(12.36)), 2));
-        cartLines.add(new CartLine(new Article("102", "203", "304", new BigDecimal(6.23)), 3));
-        shoppingCart.setCartLines(cartLines);
+        shoppingCart.addArticle(new Article("001", "002", "003", new BigDecimal(12.36)));
+        shoppingCart.addArticle(new Article("001", "002", "003", new BigDecimal(12.36)));
+        shoppingCart.addArticle(new Article("102", "203", "304", new BigDecimal(6.23)));
+        shoppingCart.addArticle(new Article("102", "203", "304", new BigDecimal(6.23)));
+        shoppingCart.addArticle(new Article("102", "203", "304", new BigDecimal(6.23)));
 
         return shoppingCart;
     }
