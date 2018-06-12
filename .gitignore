@@ -1,6 +1,7 @@
 # User-specific stuff
 .DS_Store
 .idea
+*.iml
 
 # CMake
 cmake-build-debug/
