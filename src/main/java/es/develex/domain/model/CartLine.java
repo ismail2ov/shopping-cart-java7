@@ -36,26 +36,12 @@ public class CartLine implements Serializable {
         this.numItems = numItems;
     }
 
-    public void increaseNumItems() {
-        this.numItems++;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof CartLine))
-            return false;
-        CartLine cartLine = (CartLine) o;
-        return Objects.equals(this.article, cartLine.article);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.article);
-    }
-
     public void increaseNumItemsWith(int increaseNum) {
         this.numItems += increaseNum;
+    }
+
+    @Override
+    public String toString() {
+        return "CartLine{" + "article=" + this.article + ", numItems=" + this.numItems + '}';
     }
 }

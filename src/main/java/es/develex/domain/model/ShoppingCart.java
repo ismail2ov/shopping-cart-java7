@@ -60,28 +60,34 @@ public class ShoppingCart implements Serializable {
     }
 
     public void addArticle(Article article) {
-        int index = this.cartLines.indexOf(article);
-        if (index > -1) {
-            this.cartLines.get(index).increaseNumItems();
-        } else {
-            this.cartLines.add(new CartLine(article, 1));
-        }
-
-        this.numItems++;
-        this.totalPrice = this.totalPrice.add(article.getPrice());
-
+        this.addArticle(article, 1);
     }
 
     public void addArticle(Article article, int numItems) {
-        int index = this.cartLines.indexOf(article);
-        if (index > -1) {
-            this.cartLines.get(index).increaseNumItemsWith(2);
-        } else {
-            this.cartLines.add(new CartLine(article, numItems));
+        if (!increaseItemsExistingCartLine(article, numItems)) {
+            addNewCartLine(article, numItems);
+        }
+    }
+
+    private void addNewCartLine(Article article, int numItems) {
+        this.cartLines.add(new CartLine(article, numItems));
+        increaseTotals(article, numItems);
+    }
+
+    private boolean increaseItemsExistingCartLine(Article article, int numItems) {
+        for (CartLine line : this.cartLines) {
+            if (line.getArticle().equals(article)) {
+                line.increaseNumItemsWith(numItems);
+                increaseTotals(article, numItems);
+                return true;
+            }
         }
 
+        return false;
+    }
+
+    private void increaseTotals(Article article, int numItems) {
         this.numItems += numItems;
         this.totalPrice = this.totalPrice.add(article.getPrice().multiply(new BigDecimal(numItems)));
-
     }
 }

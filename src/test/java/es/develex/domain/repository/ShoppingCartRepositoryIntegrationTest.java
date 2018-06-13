@@ -93,6 +93,7 @@ public class ShoppingCartRepositoryIntegrationTest {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(retrievedShoppingCart.getId()).isEqualTo(shoppingCart.getId());
         softAssertions.assertThat(retrievedShoppingCart.getNumItems()).isEqualTo(shoppingCart.getNumItems());
+        softAssertions.assertThat(getSumCartLinesNumItems(retrievedShoppingCart)).isEqualTo(shoppingCart.getNumItems());
         softAssertions.assertThat(retrievedShoppingCart.getTotalPrice()).isEqualTo(shoppingCart.getTotalPrice());
         softAssertions.assertThat(retrievedShoppingCart.getCartLines().size()).isEqualTo(shoppingCart.getCartLines().size());
         softAssertions.assertAll();

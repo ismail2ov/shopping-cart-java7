@@ -4,6 +4,7 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @RedisHash("Article")
 public class Article implements Serializable {
@@ -53,6 +54,22 @@ public class Article implements Serializable {
 
     private void setPrice(BigDecimal price) {
         this.price = price.setScale(2, BigDecimal.ROUND_UP);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Article article = (Article) o;
+        return Objects.equals(this.productId, article.productId) && Objects.equals(this.size, article.size) && Objects.equals(this.color, article.color);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(this.productId, this.size, this.color);
     }
 
     @Override
