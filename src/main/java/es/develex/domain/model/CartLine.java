@@ -54,4 +54,8 @@ public class CartLine implements Serializable {
     public int hashCode() {
         return Objects.hash(this.article);
     }
+
+    public void increaseNumItemsWith(int increaseNum) {
+        this.numItems += increaseNum;
+    }
 }

@@ -54,6 +54,28 @@ public class ShoppingCartRepositoryIntegrationTest {
         ShoppingCart retrievedShoppingCart = this.shoppingCartRepository.findById(shoppingCart.getId());
 
         assertThat(retrievedShoppingCart.getNumItems()).isEqualTo(1);
+        assertThat(getSumCartLinesNumItems(retrievedShoppingCart)).isEqualTo(1);
+    }
+
+    @Test
+    public void when_add_two_articles_then_num_items_increase_by_two() {
+        ShoppingCart shoppingCart = new ShoppingCart("001");
+        Article article = new Article("123456", "78", "90", new BigDecimal(12.68));
+        shoppingCart.addArticle(article, 2);
+        this.shoppingCartRepository.save(shoppingCart);
+
+        ShoppingCart retrievedShoppingCart = this.shoppingCartRepository.findById(shoppingCart.getId());
+
+        assertThat(retrievedShoppingCart.getNumItems()).isEqualTo(2);
+        assertThat(getSumCartLinesNumItems(retrievedShoppingCart)).isEqualTo(2);
+    }
+
+    private int getSumCartLinesNumItems(ShoppingCart retrievedShoppingCart) {
+        int numItems = 0;
+        for (CartLine cartLine : retrievedShoppingCart.getCartLines()) {
+            numItems += cartLine.getNumItems();
+        }
+        return numItems;
     }
 
     private ShoppingCart getShoppingCart() {

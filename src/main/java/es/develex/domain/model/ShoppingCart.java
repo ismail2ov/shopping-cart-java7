@@ -71,4 +71,17 @@ public class ShoppingCart implements Serializable {
         this.totalPrice = this.totalPrice.add(article.getPrice());
 
     }
+
+    public void addArticle(Article article, int numItems) {
+        int index = this.cartLines.indexOf(article);
+        if (index > -1) {
+            this.cartLines.get(index).increaseNumItemsWith(2);
+        } else {
+            this.cartLines.add(new CartLine(article, numItems));
+        }
+
+        this.numItems += numItems;
+        this.totalPrice = this.totalPrice.add(article.getPrice().multiply(new BigDecimal(numItems)));
+
+    }
 }
