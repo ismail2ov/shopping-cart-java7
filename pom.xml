@@ -74,10 +74,10 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.version>3.2.18.RELEASE</spring.version>
+        <spring.version>4.3.17.RELEASE</spring.version>
         <spring-data-redis>1.7.0.RELEASE</spring-data-redis>
         <jedis.version>2.9.0</jedis.version>
-        <jackson-databind.version>2.8.11.2</jackson-databind.version>
+        <jackson-databind.version>2.8.11</jackson-databind.version>
     </properties>
 
 </project>
